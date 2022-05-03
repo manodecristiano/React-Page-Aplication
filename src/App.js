@@ -1,36 +1,36 @@
 import { useRef } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { StyleSheetContext } from 'styled-components';
+
 
 import './App.css';
 
 function App() {
 
   const [number, setNumber] = useState(8);
+  const [txt,    setTxt   ] = useState('')
   const inputRef            = useRef(null);
   const resultRef           = useRef(null);
-  const [txt, setTxt]       = useState('')
   
-
+  
+/* SE AUTO LLAMA CUANDO CAMBIA EL NUMBER*/
   useEffect(() => {
     alert('Cambio el estado de number');
   },[number]);
 
-  
+/* RECOJO EL VALOR DEL INPUT Y LO MUESTRO EN PANTALLA*/ 
   const makeThings = () => {
     resultRef.current.innerHTML = inputRef.current.value;
     alert(inputRef.current.value);
   }
 
-  const changeNum = () => {
-    
+/* CAMBIAMOS LOS VALORES DE ANTES CON EL USESTATE*/
+  const changeNum = () => { 
     setNumber(5);
   }
 
   const textChange = (evento) => {
     setTxt(evento.target.value);
-
   }
 
 
@@ -38,6 +38,7 @@ function App() {
 
     <div>
      
+    
       <input type="text" ref={inputRef}/>
       <button onClick={makeThings}> Imprimir en pantalla </button>
       <div ref={resultRef}></div>
